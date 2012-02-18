@@ -1,7 +1,10 @@
 find_header: checking for libxml/parser.h... -------------------- yes
 
 "gcc -o conftest -I/usr/share/ruby-rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/i686-linux -I/usr/share/ruby-rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/ruby/backward -I/usr/share/ruby-rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1 -I. -I/opt/local/include/libxml2 -I/usr/local/include/libxml2 -I/usr/share/ruby-rvm/rubies/ruby-1.9.2-p290/include/libxml2 -I/opt/local/include -I/usr/local/include -I/usr/share/ruby-rvm/rubies/ruby-1.9.2-p290/include -I/usr/include -I/usr/include/libxml2 -I/usr/share/ruby-rvm/usr/include  -D_FILE_OFFSET_BITS=64   -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long  -fPIC  -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/usr/share/ruby-rvm/rubies/ruby-1.9.2-p290/lib -Wl,-R/usr/share/ruby-rvm/rubies/ruby-1.9.2-p290/lib -L/opt/local/lib -Wl,-R/opt/local/lib -L/usr/local/lib -Wl,-R/usr/local/lib -L/usr/share/ruby-rvm/rubies/ruby-1.9.2-p290/lib -Wl,-R/usr/share/ruby-rvm/rubies/ruby-1.9.2-p290/lib -L/usr/lib -Wl,-R/usr/lib -L/usr/share/ruby-rvm/usr/lib -Wl,-R/usr/share/ruby-rvm/usr/lib -L.  -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/usr/share/ruby-rvm/rubies/ruby-1.9.2-p290/lib -L/usr/share/ruby-rvm/rubies/ruby-1.9.2-p290/lib -lruby-static  -lpthread -lrt -ldl -lcrypt -lm   -lc "
+<<<<<<< HEAD
 /usr/share/ruby-rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/mkmf.rb:305: warning: Insecure world writable dir /usr/share/ruby-rvm/gems/ruby-1.9.2-p290/bin in PATH, mode 042777
+=======
+>>>>>>> static-pages
 checked program was:
 /* begin */
 1: #include "ruby.h"
