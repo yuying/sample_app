@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
-  before_filter :correct_user, :only => [:edit, :update]
-  before_filter :admin_user,   :only => :destroy
+  before_filter :authenticate,   :only => [:index, :edit, :update, :destroy]
+  before_filter :correct_user,   :only => [:edit, :update]
+  before_filter :admin_user,     :only => :destroy
+  before_filter :signed_in_user, :only => [:new, :create]
 
-def show
+  def show
     @user = User.find(params[:id])
     @title = @user.name
   end 
@@ -43,10 +44,6 @@ def show
     end
   end
 
-  def edit
-    @title = "Edit user"
-  end
-
   def index
     @title = "All users"
     @users = User.paginate(:page => params[:page])
@@ -61,6 +58,13 @@ def show
    User.find(params[:id]).destroy
    flash[:success] = "User destroyed."
    redirect_to users_path
+  end
+
+  def signed_in_user
+    if signed_in?
+      flash[:info] = "You already signed in, and can not create new account."
+      redirect_to(root_path)
+    end
   end
 
   private
