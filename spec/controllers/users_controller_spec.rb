@@ -199,7 +199,7 @@ describe UsersController do
       get :edit, :id => @user
       gravatar_url = "http://gravatar.com/emails"
       response.should have_selector("a", :href => gravatar_url, 
-                                          :content => "change")
+                                         :content => "change")
     end
   end
 
@@ -311,6 +311,11 @@ describe UsersController do
         delete :destroy, :id => @user
         response.should redirect_to(root_path)
       end
+
+      it "should not show the delete link" do
+        get :index
+        response.should_not have_selector("li", :content => "delete")
+      end
     end
 
     describe "as an admin user" do
@@ -335,6 +340,12 @@ describe UsersController do
         delete :destroy, :id => @user
         response.should redirect_to(users_path)
       end
+
+      it "should show the delete link" do
+        get :index
+        response.should have_selector("li", :content => "delete")
+      end
+
     end
   end
 
