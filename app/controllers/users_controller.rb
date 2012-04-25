@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(:page => params[:page])
     @title = @user.name
   end 
 
@@ -49,11 +50,6 @@ class UsersController < ApplicationController
     @users = User.paginate(:page => params[:page])
   end
   
-  def show
-    @user = User.find(params[:id])
-    @title = @user.name
-  end
-
   def destroy
     @user = User.find(params[:id])
     if  current_user == @user
@@ -73,10 +69,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-    def authenticate
-      deny_access unless signed_in?
-    end
 
     def correct_user
       @user = User.find(params[:id])
