@@ -87,11 +87,6 @@ describe UsersController do
       response.should have_selector("h1>img", :class => "gravatar")
     end
 
-    it "should not show delete links for microposts created by other users" do
-      @micropost = Factory(:micropost, :user => @user)
-    end
-      
-
     it "should show the user's microposts" do
       mp1 = Factory(:micropost, :user => @user, :content => "Foo bar")
       mp2 = Factory(:micropost, :user => @user, :content => "Baz quux")
