@@ -77,7 +77,7 @@ describe UsersController do
       response.should have_selector("title", :content => @user.name)
     end
 
-    it "should include the user's name"do
+    it "should include the user's name" do
       get :show, :id => @user
       response.should have_selector("h1", :content => @user.name)
     end
@@ -87,12 +87,25 @@ describe UsersController do
       response.should have_selector("h1>img", :class => "gravatar")
     end
 
+    it "should not show delete links for microposts created by other users" do
+      @micropost = Factory(:micropost, :user => @user)
+    end
+      
+
     it "should show the user's microposts" do
       mp1 = Factory(:micropost, :user => @user, :content => "Foo bar")
       mp2 = Factory(:micropost, :user => @user, :content => "Baz quux")
       get :show, :id => @user
       response.should have_selector("span.content", :content => mp1.content)
       response.should have_selector("span.content", :content => mp2.content)
+    end
+
+
+    it "should not show delete links for microposts created by other users" do
+      mp1 = Factory(:micropost, :user => @user, :content => "Foo bar")
+      mp2 = Factory(:micropost, :user => @user, :content => "Baz quux")
+      get :show, :id => @user
+      response.should_not have_selector("li", :content => "delete")
     end
   end
 

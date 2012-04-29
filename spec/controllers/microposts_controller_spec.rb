@@ -92,6 +92,8 @@ describe MicropostsController do
 	  delete :destroy, :id => @micropost
 	end.should change(Micropost, :count).by(-1)
       end
+
+
     end
   end
 end

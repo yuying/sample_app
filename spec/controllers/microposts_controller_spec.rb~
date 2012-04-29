@@ -61,6 +61,7 @@ describe MicropostsController do
 	flash[:success].should =~ /micropost created/i
       end
     end
+  end
 
   describe "DELETE 'destroy'" do
 
@@ -91,6 +92,12 @@ describe MicropostsController do
 	  delete :destroy, :id => @micropost
 	end.should change(Micropost, :count).by(-1)
       end
+
+       it "should not show delete links for microposts created by other users" do
+        micropost.id != current_user.id
+        response.should_not have_selector("li", :content => "delete")
+      end
+
     end
   end
 end
