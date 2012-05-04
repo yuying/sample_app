@@ -34,7 +34,7 @@ describe Micropost do
     end
 
     it "should require nonblack content" do
-      @user.microposts.build(:content => " ").should_not be_valid
+      @user.microposts.build(:content => "  ").should_not be_valid
     end
 
     it "should reject long content" do
