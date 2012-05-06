@@ -190,6 +190,7 @@ describe User do
         mp3 = Factory(:micropost, :user => followed)
         @user.follow!(followed)
         @user.feed.should include(mp3)
+      end
     end
   end
 
@@ -247,6 +248,22 @@ describe User do
     it "should include the follower in the followers array" do
       @user.follow!(@followed)
       @followed.followers.should include(@user)
+    end
+  end
+
+  describe "associated relationship" do
+    
+    before(:each) do
+      @user = User.create(@attr)
+      @r1 = @user.follow!(@followed)
+      @r2 = @followed.follow!(@user)
+    end
+
+    it "should destroy the associated relationship" do
+      @user.destroy
+      [@r1,@r2].each do |relationship|
+        Relationship.find_by_followed_id(relationship.followed_id).should be_nil
+      end
     end
   end
 end

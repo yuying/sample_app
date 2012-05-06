@@ -250,4 +250,20 @@ describe User do
       @followed.followers.should include(@user)
     end
   end
+
+  describe "associated relationship" do
+    
+    before(:each) do
+      @user = User.create(@attr)
+      @r1 = @user.follow!(@followed)
+      @r2 = @followed.follow!(@user)
+    end
+
+    it "should destroy the associated relationship" do
+      @user.destroy
+      [@r1,@r2].each do |relationship|
+        Relationship.find_by_followed_id(relationship.followed_id).should be_nil
+      end
+    end
+  end
 end
